@@ -1,0 +1,310 @@
+/* Global Styles and Reset */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+#app-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    min-height: 100vh;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Header and Navigation */
+header {
+    background-color: #00A859; /* Bright Green from design */
+    color: white;
+    padding: 3px 20px; /* Minimal padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    /* FINAL MINIMAL SIZE */
+    min-height: 60px; 
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    /* FINAL MINIMAL LOGO SIZE */
+    width: 40px; 
+    height: 40px; 
+    margin-right: 10px; 
+    border-radius: 0; 
+    border: none;
+    background-color: white; 
+    padding: 2px; /* Minimal padding on logo */
+}
+
+h1 {
+    /* Slightly reduced font size to fit minimal header */
+    font-size: 1.4em; 
+    margin: 0;
+}
+
+.menu-button {
+    background: none;
+    color: white;
+    border: 1px solid white;
+    padding: 6px 10px; /* Reduced button padding */
+    cursor: pointer;
+    font-size: 0.9em;
+    border-radius: 4px;
+}
+
+.dropdown-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    /* ADJUSTED TOP POSITION: sits below the 60px header */
+    top: 70px; 
+    right: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    display: none; /* Initially hidden */
+    z-index: 999;
+}
+
+.dropdown-menu.visible {
+    display: block;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #eee;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #e8f5e9; /* Light Green Hover */
+    color: #00A859;
+}
+
+/* Page Content */
+.page {
+    padding: 20px;
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+h2 {
+    color: #00A859;
+    text-align: center;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+h3 {
+    color: #008040; /* Darker Green for subtitles */
+    margin-top: 25px;
+}
+
+/* Home Page Logo Styles */
+.home-logo-display {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.large-logo {
+    /* Home logo size remains large */
+    width: 350px; 
+    height: 350px;
+    border-radius: 0; 
+    border: none;
+    object-fit: contain; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    background-color: #f9f9f9; 
+}
+
+
+/* Home Page */
+.home-link-button {
+    display: block;
+    width: 90%;
+    margin: 15px auto;
+    padding: 15px;
+    background-color: #00A859; /* Bright Green */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    cursor: pointer;
+    text-align: center;
+}
+
+.home-link-button:hover {
+    background-color: #008040;
+}
+
+/* Summary and Details */
+.course-list-summary {
+    list-style: none;
+    padding: 0;
+}
+
+.course-list-summary li {
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-left: 5px solid #00A859; /* Bright Green accent */
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s;
+}
+
+.course-list-summary li:hover {
+    background-color: #e8f5e9; /* Light Green Hover */
+}
+
+.content-list {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+/* Calculator Form & Enrollment Form Styles */
+#quoteForm label, #courseEnrollmentForm label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#quoteForm input[type="text"], 
+#quoteForm input[type="tel"], 
+#quoteForm input[type="email"],
+#courseEnrollmentForm input[type="text"], 
+#courseEnrollmentForm input[type="tel"], 
+#courseEnrollmentForm input[type="email"] {
+    width: 95%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* New: Styling for the venue selection dropdown */
+#courseEnrollmentForm select {
+    width: 95%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    height: 40px; /* Ensure consistency with inputs */
+}
+
+#courseSelection {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+#courseSelection div {
+    margin-bottom: 5px;
+}
+
+#quoteForm button, #courseEnrollmentForm button {
+    background-color: #FF9800; /* Orange for Call to Action */
+    color: white;
+    padding: 12px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.1em;
+}
+
+#quoteForm button:hover, #courseEnrollmentForm button:hover {
+    background-color: #e68a00;
+}
+
+.discount-info {
+    font-size: 0.9em;
+    color: #777;
+    margin-top: 15px;
+}
+
+.quote-results {
+    margin-top: 30px;
+    padding: 15px;
+    border: 2px dashed #00A859;
+    border-radius: 4px;
+    background-color: #f9fff9;
+}
+
+.quote-results h4 {
+    color: #D32F2F; /* Red for final total emphasis */
+    font-size: 1.3em;
+    margin-top: 10px;
+}
+
+.quote-note {
+    font-style: italic;
+    font-size: 0.9em;
+    color: #666;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Contact Details */
+.venue-list {
+    margin-top: 20px;
+}
+
+.venue-item {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.map-link {
+    display: inline-block;
+    background-color: #03A9F4; /* Blue for map link */
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.back-button {
+    background: #607D8B; /* Grey/Blue for utility button */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.back-button:hover {
+    background: #546E7A;
+}

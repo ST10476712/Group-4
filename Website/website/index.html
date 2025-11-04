@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empowering the Nation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="images/logo.jpeg" alt="Empowering the Nation Logo" class="logo">
+            <h1>EMPOWERING THE NATION</h1>
+        </div>
+        
+        <nav>
+            <button class="menu-button" onclick="toggleMenu()">☰ Menu</button>
+            <ul class="dropdown-menu" id="navMenu">
+                <li><a href="#" data-page="home" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" data-page="summary-six-month" onclick="showPage('summary-six-month')">Summary of Six-month Courses</a></li>
+                <li><a href="#" data-page="summary-six-week" onclick="showPage('summary-six-week')">Summary of Six-week Courses</a></li>
+                <li><a href="#" data-page="calculate-fees" onclick="showPage('calculate-fees')">Calculate Total Fees</a></li>
+                <li><a href="#" data-page="contact" onclick="showPage('contact')">Contact Details</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="app-container">
+        
+        <section id="home" class="page active">
+            <div class="home-logo-display">
+                <img src="images/logo.jpeg" alt="Empowering the Nation Logo" class="large-logo">
+            </div>
+            <h2>Empowering Workers, Cultivating Entrepreneurs</h2>
+            <p>Empowering the Nation was established in 2022 and offers training courses in Johannesburg. We train domestic workers and gardeners on both six-month long Learnerships and six-week Short Skills Training Programmes to make them more marketable.</p>
+            
+            <h3>Our Programmes:</h3>
+            <button onclick="showPage('summary-six-month')" class="home-link-button">Six-month Courses (Learnerships)</button>
+            <button onclick="showPage('summary-six-week')" class="home-link-button">Six-week Short Courses</button>
+        </section>
+        
+        <section id="summary-six-month" class="page">
+            <button class="back-button" onclick="goBack()">← Back</button>
+            <h2>Summary of Six-Month Courses (R1500 each)</h2>
+            <ul class="course-list-summary">
+                <li data-course-id="firstAid" onclick="showCourseDetails('firstAid')">
+                    First Aid (R1500) <br> <small>Purpose: To provide first aid awareness and basic life support.</small>
+                </li>
+                <li data-course-id="sewing" onclick="showCourseDetails('sewing')">
+                    Sewing (R1500) <br> <small>Purpose: To provide alterations and new garment tailoring services.</small>
+                </li>
+                <li data-course-id="landscaping" onclick="showCourseDetails('landscaping')">
+                    Landscaping (R1500) <br> <small>Purpose: To provide landscaping services for new and established gardens.</small>
+                </li>
+                <li data-course-id="lifeSkills" onclick="showCourseDetails('lifeSkills')">
+                    Life Skills (R1500) <br> <small>Purpose: To provide skills to navigate basic life necessities.</small>
+                </li>
+            </ul>
+        </section>
+        
+        <section id="summary-six-week" class="page">
+            <button class="back-button" onclick="goBack()">← Back</button>
+            <h2>Summary of Six-Week Short Courses (R750 each)</h2>
+            <ul class="course-list-summary">
+                <li data-course-id="childMinding" onclick="showCourseDetails('childMinding')">
+                    Child Minding (R750) <br> <small>Purpose: To provide basic child and baby care.</small>
+                </li>
+                <li data-course-id="cooking" onclick="showCourseDetails('cooking')">
+                    Cooking (R750) <br> <small>Purpose: To prepare and cook nutritious family meals.</small>
+                </li>
+                <li data-course-id="gardenMaintenance" onclick="showCourseDetails('gardenMaintenance')">
+                    Garden Maintenance (R750) <br> <small>Purpose: To provide basic knowledge of watering, pruning and planting.</small>
+                </li>
+            </ul>
+        </section>
+        
+        <section id="course-details" class="page">
+            <button class="back-button" onclick="goBack()">← Back</button>
+            <h2 id="detail-title"></h2>
+            <p><strong>Fees:</strong> R<span id="detail-fees"></span></p>
+            <p><strong>Purpose:</strong> <span id="detail-purpose"></span></p>
+            <h3>Content:</h3>
+            <ul id="detail-content" class="content-list"></ul>
+            <button id="enroll-button" class="home-link-button" style="width: 100%; margin-top: 20px;">Enroll Now</button>
+        </section>
+        
+        <section id="calculate-fees" class="page">
+            <button class="back-button" onclick="goBack()">← Back</button>
+            <h2>Calculate Total Fees (Quote)</h2>
+
+            <form id="quoteForm">
+                <h3>Customer Details</h3>
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required placeholder="e.g., Jane Doe">
+                
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required pattern="[0-9]{10}" placeholder="e.g., 0712345678">
+                
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required placeholder="e.g., jane@example.com">
+                <hr>
+
+                <h3>Select Courses</h3>
+                <div id="courseSelection">
+                    </div>
+
+                <p class="discount-info">
+                    Discounts: 2 Courses = 5%, 3 Courses = 10%, 4+ Courses = 15%.
+                </p>
+                <p>
+                    VAT (15%) will be added to the discounted subtotal.
+                </p>
+
+                <div class="consultation">
+                    <input type="checkbox" id="consultCheckbox">
+                    <label for="consultCheckbox">Request a consultant to contact me for a booking.</label>
+                </div>
+
+                <button type="button" onclick="calculateTotalFees()">Calculate Quote</button>
+            </form>
+
+            <div id="resultsArea" class="hidden quote-results">
+                <h3>Your Estimated Quote</h3>
+                <p>Selected Courses: <span id="courseCount">0</span></p>
+                <p>Subtotal (Course Fees): R<span id="subtotal">0.00</span></p>
+                <p>Discount Applied: <span id="discountRate">0%</span></p>
+                <p>Discount Amount: - R<span id="discountAmount">0.00</span></p>
+                <p>Total before VAT: R<span id="totalBeforeVAT">0.00</span></p>
+                <p>VAT (15%): + R<span id="vatAmount">0.00</span></p>
+                <hr>
+                <h4>TOTAL QUOTED FEE: R<span id="finalTotal">0.00</span></h4>
+                <p class="quote-note">*This is only a quoted fee and not a formal invoice for the customer.</p>
+            </div>
+        </section>
+        
+        <section id="contact" class="page">
+            <button class="back-button" onclick="goBack()">← Back</button>
+            <h2>Contact Details</h2>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 0861 843 633</p>
+                <p><strong>Email:</strong> info@empowerthenation.org</p>
+            </div>
+            
+            <h3>Our Training Venues in Johannesburg:</h3>
+            <div class="venue-list">
+                <div class="venue-item">
+                    <h4>West Block, Morningside</h4>
+                    <p>107 Rivonia Road, Morningside, Johannesburg</p>
+                    <a href="https://maps.app.goo.gl/example1" target="_blank" class="map-link">View Map</a>
+                </div>
+                <div class="venue-item">
+                    <h4>Metropolitan Centre, Braamfontein</h4>
+                    <p>1st Floor Council Chamber Wing, 166 Cnr Boulevard, Braamfontein</p>
+                    <a href="https://maps.app.goo.gl/example2" target="_blank" class="map-link">View Map</a>
+                </div>
+                <div class="venue-item">
+                    <h4>City Parks House, Braamfontein</h4>
+                    <p>40 De Korte Street, Braamfontein</p>
+                    <a href="https://maps.app.goo.gl/example3" target="_blank" class="map-link">View Map</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="enrollment-form" class="page">
+            <button class="back-button" onclick="goBack()">← Back</button>
+            <h2>Course Enrollment Request</h2>
+            
+            <form id="courseEnrollmentForm">
+                <h3>Details for: <span id="enrollment-course-name"></span></h3>
+                
+                <label for="enrollName">Full Name:</label>
+                <input type="text" id="enrollName" name="enrollName" required placeholder="e.g., Jane Doe">
+                
+                <label for="enrollPhone">Phone Number:</label>
+                <input type="tel" id="enrollPhone" name="enrollPhone" required pattern="[0-9]{10}" placeholder="e.g., 0712345678">
+                
+                <label for="enrollEmail">Email Address:</label>
+                <input type="email" id="enrollEmail" name="enrollEmail" required placeholder="e.g., jane@example.com">
+                
+                <label for="enrollVenue">Preferred Venue:</label>
+                <select id="enrollVenue" name="enrollVenue" required>
+                    <option value="">-- Select Venue --</option>
+                    <option value="West Block, Morningside">West Block, Morningside</option>
+                    <option value="Metropolitan Centre, Braamfontein">Metropolitan Centre, Braamfontein</option>
+                    <option value="City Parks House, Braamfontein">City Parks House, Braamfontein</option>
+                </select>
+                <br>
+                <br>
+
+                <button type="button" onclick="submitEnrollment()">Submit Enrollment Request</button>
+            </form>
+
+            <div id="enrollmentResults" class="hidden quote-results">
+                <h3>Enrollment Submitted!</h3>
+                <p>Thank you, <span id="enrollResultName"></span>. We have received your enrollment request for **<span id="enrollResultCourse"></span>**.</p>
+                <p>A consultant will contact you shortly via email (<span id="enrollResultEmail"></span>) or phone (<span id="enrollResultPhone"></span>) to finalize your booking at the <span id="enrollResultVenue"></span> venue.</p>
+                <button class="back-button" onclick="showPage('home')" style="width: 100%; margin-top: 15px;">Return to Home</button>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
